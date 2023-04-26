@@ -1,6 +1,6 @@
 package controller;
 
-import Model.Grille;
+import model.Grille;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;

@@ -1,6 +1,4 @@
-package Model;
-
-import java.util.ArrayList;
+package model;
 
 public class Grille
 {

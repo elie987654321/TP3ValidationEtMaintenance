@@ -1,4 +1,4 @@
-package Model;
+package model;
 
 public class Case {
     public enum TypeCase{
