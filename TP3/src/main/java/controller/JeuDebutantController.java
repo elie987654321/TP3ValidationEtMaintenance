@@ -11,7 +11,6 @@ public class JeuDebutantController extends Application {
 
     private Grille grille;
 
-
     @Override
     public void start(Stage primaryStage) throws Exception {
 
@@ -21,27 +20,18 @@ public class JeuDebutantController extends Application {
 
         Scene scene = new Scene(fxmlLoader.load(), 263, 288);
         primaryStage.setScene(scene);
-<<<<<<< Updated upstream
+
         GrilleController controllerTest = new GrilleController();
         grille = new Grille(4,4);
         controllerTest.PeuplerGrille(grille, 10);
         int i = 0;
-=======
-        primaryStage.setResizable(false);
->>>>>>> Stashed changes
-        primaryStage.show();
 
+        primaryStage.setResizable(false);
+        primaryStage.show();
 
     }
 
-<<<<<<< Updated upstream
-
-
-
-    public static void main(String args[]) {
-=======
     public static void main(String[] args) {
->>>>>>> Stashed changes
         launch(args);
     }
 }
