@@ -22,9 +22,9 @@ public class Case {
     }
 
     private TypeCase type;
-
-
     private EtatCase etat;
+
+
 
     public EtatCase getEtat() {
         return etat;

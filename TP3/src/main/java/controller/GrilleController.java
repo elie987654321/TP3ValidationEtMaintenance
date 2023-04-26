@@ -36,7 +36,9 @@ public class GrilleController {
                 {
                     int nombreMines = 0;
 
-                    if(i-1 >=0 && j-1 >=0 &&)
+                    if(i-1 >=0 && j-1 >=0 ){
+
+                    }
                 }
 
             }
