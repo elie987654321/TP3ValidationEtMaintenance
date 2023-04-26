@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+
 public class JeuDebutantController extends Application {
 
     private Grille grille;
@@ -13,26 +14,34 @@ public class JeuDebutantController extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        primaryStage.setTitle("Jeu debutant");
 
-        FXMLLoader fxmlLoader1 = new FXMLLoader(getClass().getResource("/view/JeuDebutant.fxml"));
+        primaryStage.setTitle("Débutant");
 
-        Scene scene = new Scene(fxmlLoader1.load());
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/JeuDebutant.fxml"));
+
+        Scene scene = new Scene(fxmlLoader.load(), 263, 288);
         primaryStage.setScene(scene);
+<<<<<<< Updated upstream
         GrilleController controllerTest = new GrilleController();
         grille = new Grille(4,4);
         controllerTest.PeuplerGrille(grille, 10);
         int i = 0;
+=======
+        primaryStage.setResizable(false);
+>>>>>>> Stashed changes
         primaryStage.show();
 
 
     }
 
+<<<<<<< Updated upstream
 
 
 
     public static void main(String args[]) {
+=======
+    public static void main(String[] args) {
+>>>>>>> Stashed changes
         launch(args);
     }
-
 }
