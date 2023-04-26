@@ -1,2 +1,16 @@
 
 TP3 version prof/.idea/compiler.xml
+TP3/out/production/TP3/view/JeuIntermediaire.fxml
+TP3/out/production/TP3/view/JeuExpert.fxml
+TP3/out/production/TP3/view/JeuDebutant.fxml
+TP3/out/production/TP3/Model/Partie.class
+TP3/out/production/TP3/Model/Grille.class
+TP3/out/production/TP3/model/Case.class
+TP3/out/production/TP3/Model/Case.class
+TP3/out/production/TP3/Model/Case$TypeCase.class
+TP3/out/production/TP3/Model/Case$EtatCase.class
+TP3/out/production/TP3/controller/JeuIntermediaireController.class
+TP3/out/production/TP3/controller/JeuExpertController.class
+TP3/out/production/TP3/controller/JeuDebutantGraphicalController.class
+TP3/out/production/TP3/controller/JeuDebutantController.class
+TP3/out/production/TP3/controller/GrilleController.class
