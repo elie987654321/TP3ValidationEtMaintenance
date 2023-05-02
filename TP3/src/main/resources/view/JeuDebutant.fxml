@@ -5,8 +5,10 @@
 
 <VBox xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.JeuDebutantGraphicalController">
    <MenuBar>
-      <Menu text="Partie">
-         <MenuItem text="Recommencer" onAction="#recommencerLaPartie" />
+      <Menu text="Difficulté">
+         <MenuItem text="Débutant" onAction="" />
+         <MenuItem text="Intermédiaire" />
+         <MenuItem text="Expert" />
       </Menu>
    </MenuBar>
 

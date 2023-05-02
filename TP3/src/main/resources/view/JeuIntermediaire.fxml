@@ -3,10 +3,12 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.control.*?>
 
-<VBox xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.JeuDebutantGraphicalController">
+<VBox xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.JeuIntermediaireGraphicalController">
     <MenuBar>
-        <Menu text="Partie">
-            <MenuItem text="Recommencer" onAction="#recommencerLaPartie" />
+        <Menu text="Difficulté">
+            <MenuItem text="Débutant" onAction="#handleMenuItemDebutant" />
+            <MenuItem text="Intermédiaire" onAction="#handleMenuItemIntermediaire"/>
+            <MenuItem text="Expert" onAction="#handleMenuItemExpert"/>
         </Menu>
     </MenuBar>
 

@@ -14,7 +14,7 @@ public class JeuExpertController extends Application {
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/JeuExpert.fxml"));
 
-        Scene scene = new Scene(fxmlLoader.load(), 263, 288);
+        Scene scene = new Scene(fxmlLoader.load(), 500, 308);
         primaryStage.setScene(scene);
         primaryStage.setResizable(false);
         primaryStage.show();

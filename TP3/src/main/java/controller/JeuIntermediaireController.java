@@ -14,7 +14,7 @@ public class JeuIntermediaireController extends Application {
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/JeuIntermediaire.fxml"));
 
-        Scene scene = new Scene(fxmlLoader.load(), 263, 288);
+        Scene scene = new Scene(fxmlLoader.load());
         primaryStage.setScene(scene);
         primaryStage.setResizable(false);
         primaryStage.show();
