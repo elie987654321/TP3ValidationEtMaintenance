@@ -12,13 +12,14 @@ public class GrilleController {
        AjouterChiffresGrille(grille);
     }
 
-    public void AjouterEtatInitialCasesGrille(Grille grille)
+    public void AjouterEtatEtTypeInitialCasesGrille(Grille grille)
     {
         for(int i = 0 ; i < grille.getLargeur(); i++)
         {
             for(int j = 0; j < grille.getHauteur(); j++)
             {
                 grille.getGrille()[i][j].setEtat(Case.EtatCase.normal);
+                grille.getGrille()[i][j].setType(Case.TypeCase.rien);
             }
         }
     }
@@ -50,12 +51,13 @@ public class GrilleController {
     //    On se dirige a droite de la grille en augmentant la valeur de i
     public void AjouterChiffresGrille(Grille grille)
     {
-        int nombreMines = 0;
 
         for(int i = 0; i < grille.getLargeur(); i++)
         {
             for(int j = 0; j < grille.getHauteur(); j++)
             {
+                int nombreMines = 0;
+
                 if(grille.getGrille()[i][j].getType() != Case.TypeCase.mine)
                 {
                     if(i-1 >= 0 && j-1 >= 0)
@@ -95,7 +97,7 @@ public class GrilleController {
                     }
                     if( j + 1 < grille.getGrille()[0].length )
                     {
-                        if(grille.getGrille()[i][j+1].getType() == Case.TypeCase.mine);
+                        if(grille.getGrille()[i][j+1].getType() == Case.TypeCase.mine)
                         {
                             nombreMines++;
                         }
@@ -126,6 +128,7 @@ public class GrilleController {
                             break;
                         case 2 :
                             grille.getGrille()[i][j].setType(Case.TypeCase.deux);
+                            break;
                         case 3 :
                             grille.getGrille()[i][j].setType(Case.TypeCase.trois);
                             break;
@@ -143,6 +146,8 @@ public class GrilleController {
                             break;
                         case 8:
                             grille.getGrille()[i][j].setType(Case.TypeCase.huit);
+                            break;
+                        default:
                             break;
                     }
                 }
