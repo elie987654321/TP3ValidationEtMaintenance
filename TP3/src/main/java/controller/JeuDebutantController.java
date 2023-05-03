@@ -18,13 +18,17 @@ public class JeuDebutantController extends Application {
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/JeuDebutant.fxml"));
 
-        Scene scene = new Scene(fxmlLoader.load(), 263, 288);
-        primaryStage.setScene(scene);
-
         GrilleController controllerTest = new GrilleController();
         grille = new Grille(4,4);
         controllerTest.PeuplerGrille(grille, 10);
+
+
+        Scene scene = new Scene(fxmlLoader.load(), 263, 288);
+        primaryStage.setScene(scene);
+
+
         int i = 0;
+
 
         primaryStage.setResizable(false);
         primaryStage.show();
