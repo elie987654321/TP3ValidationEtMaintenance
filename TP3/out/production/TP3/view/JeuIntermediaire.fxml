@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.control.*?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.VBox?>
 
 <VBox xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.JeuIntermediaireGraphicalController">
     <MenuBar>
@@ -12,10 +18,15 @@
 
         </Menu>
     </MenuBar>
-    <BorderPane prefHeight="55.0" prefWidth="328.0">
+    <BorderPane minHeight="45">
         <center>
             <Button fx:id="bonhomme" mnemonicParsing="false" BorderPane.alignment="CENTER" onAction="#recommencerLaPartie"/>
         </center>
     </BorderPane>
-    <GridPane fx:id="tableauDeJeu" prefWidth="320.0" prefHeight="320.0" hgap="1.0" vgap="1.0" />
+    <BorderPane fx:id="contour">
+        <center>
+            <GridPane fx:id="tableauDeJeu" hgap="1.0" prefHeight="320.0" prefWidth="331.0" vgap="1.0" BorderPane.alignment="CENTER">
+            </GridPane>
+        </center>
+    </BorderPane>
 </VBox>

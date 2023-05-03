@@ -1,5 +1,11 @@
 .caseDeBase {
-    -fx-background-image: url("images/caseDeBase.png");
-    -fx-background-repeat: no-repeat;
-    -fx-background-position: center;
+    -fx-background-color: #C0C0C0;
+    -fx-background-radius: 0;
+    -fx-border-color: #A9A9A9;
+    -fx-border-radius: 0;
+    -fx-border-width: 1px;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+
 }
+

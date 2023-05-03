@@ -9,7 +9,7 @@ public class GrilleController {
 
     public void PeuplerGrille(Grille grille, int nbBombe)
     {
-        AjouterEtatInitialCasesGrille(grille);
+        AjouterEtatEtTypeInitialCasesGrille(grille);
         AjouterMinesGrille(grille, nbBombe);
         AjouterChiffresGrille(grille);
     }
