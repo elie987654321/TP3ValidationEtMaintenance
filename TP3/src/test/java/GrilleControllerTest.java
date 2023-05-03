@@ -5,24 +5,8 @@ import org.junit.jupiter.api.Assertions.*;
 import controller.GrilleController;
 import model.Grille;
 
-@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class GrilleControllerTest
 {
-    public GrilleController grilleController;
-    public Grille grille;
-
-    @BeforeAll
-    public void InitGrilleController()
-    {
-        grilleController = new GrilleController();
-    }
-
-    @BeforeEach
-    public void InitGrille()
-    {
-        grille = new Grille(20,20);
-    }
-
     @Test
     public void TestPeuplerGrille()
     {
@@ -32,8 +16,14 @@ public class GrilleControllerTest
     @Test
     public void TestAjouterEtatInitialCasesGrilles()
     {
+        //GIVEN
+        GrilleController grilleController = new GrilleController();
+        Grille grille = new Grille(20,20);
+
+        //WHEN
         grilleController.AjouterEtatInitialCasesGrille(grille);
 
+        //THEN
         for(int i = 0 ; i < grille.getLargeur(); i++)
         {
             for(int j = 0; j < grille.getHauteur(); j++)
@@ -43,8 +33,17 @@ public class GrilleControllerTest
         }
     }
 
+    @Test
     public void TestAjouterMinesGrille()
     {
+        //GIVEN
+        GrilleController grilleController = new GrilleController();
+        Grille grille = new Grille(20,20);
+
+        //WHEN
+        grilleController.AjouterMinesGrille(grille, 10);
+
+        //THEN
 
     }
 
