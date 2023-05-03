@@ -1,54 +1,37 @@
 package controller;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.scene.control.MenuItem;
 
-import java.awt.*;
-import java.io.IOException;
 
 public class JeuIntermediaireGraphicalController {
 
-    private Stage stage;
+    @FXML
+    public MenuItem debutantMenuItem;
 
     @FXML
-    private Parent root;
+    public MenuItem intermediaireMenuItem;
 
     @FXML
-    private JeuExpertController jeuExpertController;
-    @FXML
-    private MenuItem debutant;
+    public MenuItem expertMenuItem;
 
-    @FXML
-    private MenuItem intermediaire;
-
-    @FXML
-    private MenuItem expert;
-
-    @FXML
-    private void handleMenuItemDebutant(ActionEvent actionEvent) throws IOException {
-        stage.setTitle("Jeu du 21");
-
-        FXMLLoader fxmlLoader1 = new FXMLLoader(getClass().getResource("/view/JeuDebutant.fxml"));
-        Scene scene = new Scene(fxmlLoader1.load());
-
-
+    public void handleJeuDebutant() throws Exception {
+        Stage stage = (Stage) debutantMenuItem.getParentPopup().getOwnerWindow();
+        JeuDebutantController jeuDebutantController = new JeuDebutantController();
+        jeuDebutantController.start(stage);
     }
 
-    @FXML
-    public void handleMenuItemIntermediaire(ActionEvent actionEvent) {
-
+    public void handleJeuIntermediaire() throws Exception {
+        Stage stage = (Stage) intermediaireMenuItem.getParentPopup().getOwnerWindow();
+        JeuIntermediaireController jeuIntermediaireController = new JeuIntermediaireController();
+        jeuIntermediaireController.start(stage);
     }
 
-    @FXML
-    public void handleMenuItemExpert(ActionEvent actionEvent) throws IOException {
-            root = FXMLLoader.load(
-                    getClass().getResource("/view/JeuExpert.fxml"));
-            stage.getScene().setRoot(root);
-
+    public void handleJeuExpert() throws Exception {
+        Stage stage = (Stage) expertMenuItem.getParentPopup().getOwnerWindow();
+        JeuExpertController expertController = new JeuExpertController();
+        expertController.start(stage);
     }
+
 }

@@ -6,9 +6,10 @@
 <VBox xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.JeuIntermediaireGraphicalController">
     <MenuBar>
         <Menu text="Difficulté">
-            <MenuItem text="Débutant" onAction="#handleMenuItemDebutant" />
-            <MenuItem text="Intermédiaire" onAction="#handleMenuItemIntermediaire"/>
-            <MenuItem text="Expert" onAction="#handleMenuItemExpert"/>
+            <MenuItem fx:id="debutantMenuItem" text="Débutant" onAction="#handleJeuDebutant"/>
+            <MenuItem fx:id="intermediaireMenuItem" text="Intermédiaire" onAction="#handleJeuIntermediaire"/>
+            <MenuItem fx:id="expertMenuItem" text="Expert" onAction="#handleJeuExpert"/>
+
         </Menu>
     </MenuBar>
 
