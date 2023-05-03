@@ -1,4 +1,3 @@
-/*
 package controller;
 
 import model.Case;
@@ -9,8 +8,9 @@ import java.util.Random;
 public class GrilleController {
     public void PeuplerGrille(Grille grille, int nbBombe)
     {
-       AjouterMinesGrille(grille, nbBombe);
-       AjouterChiffresGrille(grille);
+        AjouterEtatInitialCasesGrille(grille);
+        AjouterMinesGrille(grille, nbBombe);
+        AjouterChiffresGrille(grille);
     }
 
     public void AjouterEtatInitialCasesGrille(Grille grille)
@@ -153,4 +153,3 @@ public class GrilleController {
 
 
 }
-*/
