@@ -12,6 +12,17 @@ public class GrilleController {
        AjouterChiffresGrille(grille);
     }
 
+    public void AjouterEtatInitialCasesGrille(Grille grille)
+    {
+        for(int i = 0 ; i < grille.getLargeur(); i++)
+        {
+            for(int j = 0; j < grille.getHauteur(); j++)
+            {
+                grille.getGrille()[i][j].setEtat(Case.EtatCase.normal);
+            }
+        }
+    }
+
     public void AjouterMinesGrille(Grille grille, int nbBombe)
     {
         Random rand = new Random();
@@ -39,20 +50,14 @@ public class GrilleController {
     //    On se dirige a droite de la grille en augmentant la valeur de i
     public void AjouterChiffresGrille(Grille grille)
     {
+        int nombreMines = 0;
+
         for(int i = 0; i < grille.getLargeur(); i++)
         {
             for(int j = 0; j < grille.getHauteur(); j++)
             {
                 if(grille.getGrille()[i][j].getType() != Case.TypeCase.mine)
                 {
-                    int nombreMines = 0;
-
-
-                    if(i-1 >=0 && j-1 >=0 ){
-
-                    }
-                }
-
                     if(i-1 >= 0 && j-1 >= 0)
                     {
                         if(grille.getGrille()[i-1][j-1].getType() == Case.TypeCase.mine)
