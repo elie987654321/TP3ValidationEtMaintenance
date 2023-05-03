@@ -6,6 +6,7 @@ import model.Grille;
 import java.util.Random;
 
 public class GrilleController {
+
     public void PeuplerGrille(Grille grille, int nbBombe)
     {
         AjouterEtatInitialCasesGrille(grille);
@@ -150,6 +151,5 @@ public class GrilleController {
             }
         }
     }
-
 
 }

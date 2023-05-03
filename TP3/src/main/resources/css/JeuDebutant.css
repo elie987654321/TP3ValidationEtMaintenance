@@ -1,0 +1,5 @@
+.caseDeBase {
+    -fx-background-image: url("images/caseDeBase.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}

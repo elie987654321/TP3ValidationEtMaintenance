@@ -7,6 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import model.Case;
@@ -19,10 +20,15 @@ public class JeuDebutantGraphicalController {
 
     private Grille grille = new Grille(8,8);
     private GrilleController grilleController = new GrilleController();
-    private Image image = new Image("images/caseDeBase.png");
+    private Image imageCaseDeBase = new Image("images/caseDeBase.png");
+    private ImageView imageViewCase;
 
     @FXML
-    private Button button;
+    private Button bonhomme;
+    private Image imageBonhommeSourire = new Image("images/boutonInteractifSourire.png");
+    private Image imageBonhommeGagne = new Image("images/boutonInteractifGagne.png");
+    private Image imageBonhommeMort = new Image("images/boutonInteractifMort.png");
+    private ImageView imageViewBonhomme;
 
     @FXML
     private GridPane tableauDeJeu;
@@ -54,19 +60,30 @@ public class JeuDebutantGraphicalController {
         expertController.start(stage);
     }
 
+    public void recommencerLaPartie() throws Exception {
+
+    }
+
     public void initialize() {
         grilleController.PeuplerGrille(grille, 10);
 
         for (int ligne = 0; ligne < grille.getLargeur(); ligne++) {
             for (int colonne = 0; colonne < grille.getHauteur(); colonne++) {
-                //grille.getGrille()[colonne][ligne].setMinWidth(16);
-                tableauDeJeu.add(grille.getGrille()[colonne][ligne], colonne, ligne);
+                grille.getGrille()[colonne][ligne].setMinWidth(16);
+                grille.getGrille()[colonne][ligne].setMinWidth(16);
+                imageViewCase = new ImageView(imageCaseDeBase);
+                grille.getGrille()[colonne][ligne].setPrefSize(16,16);
+                grille.getGrille()[colonne][ligne].setGraphic(imageViewCase);
+                grille.getGrille()[colonne][ligne].setStyle("-fx-background-color: transparent;");
+
+                bonhomme.setPrefSize(16,16);
+                bonhomme.setStyle("-fx-background-color: transparent;");
+                imageViewBonhomme = new ImageView(imageBonhommeSourire);
+                bonhomme.setGraphic(imageViewBonhomme);
+
+
+                tableauDeJeu.add(grille.getGrille()[ligne][colonne], ligne, colonne);
             }
         }
     }
-
-    public void recommencerLaPartie(){
-
-    }
-
 }
