@@ -46,6 +46,24 @@ public class Grille
     }
 
 
+    public int getNbBombes()
+    {
+        int nbBombes = 0;
+
+        for(int i = 0; i < getLargeur(); i++)
+        {
+            for(int j = 0; j < getHauteur(); j++)
+            {
+                if(grille[i][j].getType() == Case.TypeCase.mine)
+                {
+                    i++;
+                }
+            }
+        }
+
+        return nbBombes;
+    }
+
     public int getLargeur() {
         return largeur;
     }
