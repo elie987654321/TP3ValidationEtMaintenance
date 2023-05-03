@@ -101,7 +101,7 @@ public class GrilleController {
                             nombreMines++;
                         }
                     }
-                    if(i-1 >= 0 && j+1  == grille.getGrille()[0].length)
+                    if(i-1 >= 0 && j+1 < grille.getGrille()[0].length)
                     {
                         if(grille.getGrille()[i-1][j+1].getType() == Case.TypeCase.mine)
                         {
