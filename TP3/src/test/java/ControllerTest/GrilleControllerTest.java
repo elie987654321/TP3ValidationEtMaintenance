@@ -1,11 +1,10 @@
-package Controller;
+package ControllerTest;
 
-import model.Case;
 import org.junit.jupiter.api.*;
-import org.junit.jupiter.api.Assertions.*;
 
 import controller.GrilleController;
 import model.Grille;
+import model.Case;
 
 public class GrilleControllerTest
 {

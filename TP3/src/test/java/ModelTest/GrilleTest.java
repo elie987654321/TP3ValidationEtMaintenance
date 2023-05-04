@@ -1,8 +1,10 @@
-package model;
+package ModelTest;
 
+import controller.GrilleController;
+import model.Case;
+import model.Grille;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class GrilleTest {
 
@@ -10,11 +12,15 @@ class GrilleTest {
     void getNbCaseRestante()
     {
         //GIVEN
-
+        GrilleController grilleController = new GrilleController();
+        Grille grille = new Grille(3,3);
 
         //WHEN
+        grilleController.AjouterEtatEtTypeInitialCasesGrille(grille);
+        grille.getGrille()[0][0].setEtat(Case.EtatCase.normal);
 
         //THEN
+        Assertions.assertEquals(8,grille.getNbCaseRestante());
     }
 
     @Test

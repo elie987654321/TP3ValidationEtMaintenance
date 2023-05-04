@@ -2,7 +2,7 @@ package model;
 
 import javafx.scene.control.Button;
 
-public class Case extends Button{
+public class Case/* extends Button*/{
     public enum TypeCase{
         rien,
         un,

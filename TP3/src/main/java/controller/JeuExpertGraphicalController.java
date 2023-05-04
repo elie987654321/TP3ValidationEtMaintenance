@@ -86,15 +86,15 @@ public class JeuExpertGraphicalController {
             for (int colonne = 0; colonne < grille.getHauteur(); colonne++) {
 
                 // Les cases
-                imageViewCase = new ImageView(imageCaseDeBase);
-                grille.getGrille()[ligne][colonne].setGraphic(imageViewCase);
+      /*          imageViewCase = new ImageView(imageCaseDeBase);
+                grille.getGrille()[ligne][colonne].setGraphic(imageViewCase);*/
 /*                grille.getGrille()[ligne][colonne].setDisable(true);
                 grille.getGrille()[ligne][colonne].setStyle("-fx-opacity: 1");*/
                 // Le bonhomme
-                imageViewBonhomme = new ImageView(imageBonhommeSourire);
+      /*          imageViewBonhomme = new ImageView(imageBonhommeSourire);
                 bonhomme.setGraphic(imageViewBonhomme);
 
-                tableauDeJeu.add(grille.getGrille()[ligne][colonne], ligne, colonne);
+                tableauDeJeu.add(grille.getGrille()[ligne][colonne], ligne, colonne);*/
             }
         }
     }

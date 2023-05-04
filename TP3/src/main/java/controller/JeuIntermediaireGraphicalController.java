@@ -88,13 +88,13 @@ public class JeuIntermediaireGraphicalController {
 
                 // Les cases
                 imageViewCase = new ImageView(imageCaseDeBase);
-                grille.getGrille()[ligne][colonne].setGraphic(imageViewCase);
+             /*   grille.getGrille()[ligne][colonne].setGraphic(imageViewCase);
 
                 // Le bonhomme
                 imageViewBonhomme = new ImageView(imageBonhommeSourire);
                 bonhomme.setGraphic(imageViewBonhomme);
 
-                tableauDeJeu.add(grille.getGrille()[ligne][colonne], ligne, colonne);
+                tableauDeJeu.add(grille.getGrille()[ligne][colonne], ligne, colonne);*/
             }
         }
     }

@@ -20,7 +20,7 @@ import java.util.ResourceBundle;
 public class JeuDebutantGraphicalController {
 
     // La grille
-    private Grille grille = new Grille(8,8);
+    private GrilleGraphique grille = new GrilleGraphique(8,8);
     private GrilleController grilleController = new GrilleController();
     @FXML
     private GridPane tableauDeJeu;
@@ -88,20 +88,21 @@ public class JeuDebutantGraphicalController {
     }
 
     public void initialize() {
-        grilleController.PeuplerGrille(grille, 10);
+        grilleController.PeuplerGrille(grille.grille, 10);
+
 
         for (int ligne = 0; ligne < grille.getLargeur(); ligne++) {
             for (int colonne = 0; colonne < grille.getHauteur(); colonne++) {
 
                 // Les cases
                 imageViewCase = new ImageView(imageCaseDeBase);
-                grille.getGrille()[ligne][colonne].setGraphic(imageViewCase);
+                grille.getGrilleGraphique()[ligne][colonne].setGraphic(imageViewCase);
 
                 // Le bonhomme
                 imageViewBonhomme = new ImageView(imageBonhommeSourire);
                 bonhomme.setGraphic(imageViewBonhomme);
 
-                tableauDeJeu.add(grille.getGrille()[ligne][colonne], ligne, colonne);
+                tableauDeJeu.add(grille.getGrilleGraphique()[ligne][colonne], ligne, colonne);
             }
         }
     }
