@@ -75,8 +75,8 @@ public class JeuExpertGraphicalController {
 
     public void recommencerLaPartie() throws Exception {
         Stage stage = (Stage) bonhomme.getScene().getWindow();
-        JeuIntermediaireController jeuIntermediaireController = new JeuIntermediaireController();
-        jeuIntermediaireController.start(stage);
+        JeuExpertController expertController = new JeuExpertController();
+        expertController.start(stage);
     }
 
     public void initialize() {
@@ -85,14 +85,12 @@ public class JeuExpertGraphicalController {
         for (int ligne = 0; ligne < grille.getLargeur(); ligne++) {
             for (int colonne = 0; colonne < grille.getHauteur(); colonne++) {
 
-                contour.setStyle("-fx-border-color: grey; -fx-border-width: 4px;");
                 // Les cases
-                grille.getGrille()[ligne][colonne].setStyle("-fx-font-size: 1px");
                 imageViewCase = new ImageView(imageCaseDeBase);
                 grille.getGrille()[ligne][colonne].setGraphic(imageViewCase);
-
+/*                grille.getGrille()[ligne][colonne].setDisable(true);
+                grille.getGrille()[ligne][colonne].setStyle("-fx-opacity: 1");*/
                 // Le bonhomme
-                bonhomme.setStyle("-fx-font-size: 1px");
                 imageViewBonhomme = new ImageView(imageBonhommeSourire);
                 bonhomme.setGraphic(imageViewBonhomme);
 

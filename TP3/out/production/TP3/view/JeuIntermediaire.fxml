@@ -10,6 +10,9 @@
 <?import javafx.scene.layout.VBox?>
 
 <VBox xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.JeuIntermediaireGraphicalController">
+    <stylesheets>
+        <URL value="@../css/Jeu.css" />
+    </stylesheets>
     <MenuBar>
         <Menu text="Difficulté">
             <MenuItem fx:id="debutantMenuItem" text="Débutant" onAction="#handleJeuDebutant"/>
