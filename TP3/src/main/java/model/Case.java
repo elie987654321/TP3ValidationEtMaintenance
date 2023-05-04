@@ -25,8 +25,8 @@ public class Case extends Button{
 
     private TypeCase type;
     private EtatCase etat;
-
-
+    private int ligne;
+    private int colonne;
 
     public EtatCase getEtat() {
         return etat;
@@ -43,5 +43,19 @@ public class Case extends Button{
 
     public void setType(TypeCase type) {
         this.type = type;
+    }
+
+    public int getLigne() {
+        return ligne;
+    }
+    public void setLigne(int ligne) {
+        this.ligne = ligne;
+    }
+
+    public int getColonne() {
+        return colonne;
+    }
+    public void setColonne(int colonne) {
+        this.colonne = colonne;
     }
 }

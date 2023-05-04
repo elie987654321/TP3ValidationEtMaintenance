@@ -24,15 +24,15 @@ public class JeuIntermediaireGraphicalController {
     // Images des cases
     private ImageView imageViewCase;
     private Image imageCaseDeBase = new Image("images/caseDeBase.png");
-    private Image imageCase0 = new Image("images/case0.png");
-    private Image imageCase1 = new Image("images/case1.png");
-    private Image imageCase2 = new Image("images/case2.png");
-    private Image imageCase3 = new Image("images/case3.png");
-    private Image imageCase4 = new Image("images/case4.png");
-    private Image imageCase5 = new Image("images/case5.png");
-    private Image imageCase6 = new Image("images/case6.png");
-    private Image imageCase7 = new Image("images/case7.png");
-    private Image imageCase8 = new Image("images/case8.png");
+    private Image imageCase0 = new Image("images/rien.png");
+    private Image imageCase1 = new Image("images/un.png");
+    private Image imageCase2 = new Image("images/deux.png");
+    private Image imageCase3 = new Image("images/trois.png");
+    private Image imageCase4 = new Image("images/quatre.png");
+    private Image imageCase5 = new Image("images/cinq.png");
+    private Image imageCase6 = new Image("images/six.png");
+    private Image imageCase7 = new Image("images/sept.png");
+    private Image imageCase8 = new Image("images/huit.png");
     private Image imageCaseDrapeau = new Image("images/caseDrapeau.png");
     private Image imageCaseInterrogation = new Image("images/caseInterrogation.png");
     private Image imageCaseMine = new Image("images/caseMine.png");

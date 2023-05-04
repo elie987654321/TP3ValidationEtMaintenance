@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Assertions.*;
 import controller.GrilleController;
 import model.Grille;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 public class GrilleControllerTest
 {
     @Test
@@ -28,7 +30,7 @@ public class GrilleControllerTest
         {
             for(int j = 0; j < grille.getHauteur(); j++)
             {
-                Assertions.assertEquals( Case.EtatCase.normal, grille.getGrille()[i][j].getEtat());
+                assertEquals( Case.EtatCase.normal, grille.getGrille()[i][j].getEtat());
             }
         }
     }
@@ -55,7 +57,7 @@ public class GrilleControllerTest
             }
         }
 
-        Assertions.assertEquals(10, nbBombeCalcul);
+        assertEquals(10, nbBombeCalcul);
     }
 
     @Test
@@ -123,16 +125,43 @@ public class GrilleControllerTest
         grilleController.AjouterChiffresGrille(grille);
 
         //THEN
-        Assertions.assertEquals(Case.TypeCase.un ,grille.getGrille()[4][0].getType());
-        Assertions.assertEquals(Case.TypeCase.deux ,grille.getGrille()[1][0].getType());
-        Assertions.assertEquals(Case.TypeCase.trois ,grille.getGrille()[1][3].getType());
-        Assertions.assertEquals(Case.TypeCase.quatre ,grille.getGrille()[5][3].getType());
-        Assertions.assertEquals(Case.TypeCase.cinq ,grille.getGrille()[1][7].getType());
-        Assertions.assertEquals(Case.TypeCase.six ,grille.getGrille()[5][7].getType());
-        Assertions.assertEquals(Case.TypeCase.sept ,grille.getGrille()[1][10].getType());
-        Assertions.assertEquals(Case.TypeCase.huit ,grille.getGrille()[5][10].getType());
+        assertEquals(Case.TypeCase.un ,grille.getGrille()[4][0].getType());
+        assertEquals(Case.TypeCase.deux ,grille.getGrille()[1][0].getType());
+        assertEquals(Case.TypeCase.trois ,grille.getGrille()[1][3].getType());
+        assertEquals(Case.TypeCase.quatre ,grille.getGrille()[5][3].getType());
+        assertEquals(Case.TypeCase.cinq ,grille.getGrille()[1][7].getType());
+        assertEquals(Case.TypeCase.six ,grille.getGrille()[5][7].getType());
+        assertEquals(Case.TypeCase.sept ,grille.getGrille()[1][10].getType());
+        assertEquals(Case.TypeCase.huit ,grille.getGrille()[5][10].getType());
 
 
+    }
+
+    @Test
+    public void testGetNbCaseRestante() {
+        Grille g = new Grille(10, 10);
+        assertEquals(100, g.getNbCaseRestante());
+
+        g.getGrille()[0][0].setEtat(Case.EtatCase.revele);
+        assertEquals(99, g.getNbCaseRestante());
+
+        g.getGrille()[1][1].setEtat(Case.EtatCase.drapeau);
+        assertEquals(98, g.getNbCaseRestante());
+
+        g.getGrille()[2][2].setEtat(Case.EtatCase.interrogation);
+        assertEquals(97, g.getNbCaseRestante());
+    }
+
+    @Test
+    public void testGetNbBombes() {
+        Grille g = new Grille(10, 10);
+        assertEquals(0, g.getNbBombes());
+
+        g.getGrille()[0][0].setType(Case.TypeCase.mine);
+        assertEquals(1, g.getNbBombes());
+
+        g.getGrille()[1][1].setType(Case.TypeCase.mine);
+        assertEquals(2, g.getNbBombes());
     }
 }
 
