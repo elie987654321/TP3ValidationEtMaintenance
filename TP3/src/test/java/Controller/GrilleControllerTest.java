@@ -1,3 +1,5 @@
+package Controller;
+
 import model.Case;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.Assertions.*;
