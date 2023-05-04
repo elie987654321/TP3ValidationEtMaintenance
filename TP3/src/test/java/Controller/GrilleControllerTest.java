@@ -23,7 +23,7 @@ public class GrilleControllerTest
         Grille grille = new Grille(20,20);
 
         //WHEN
-        grilleController.AjouterEtatInitialCasesGrille(grille);
+        grilleController.AjouterEtatEtTypeInitialCasesGrille(grille);
 
         //THEN
         for(int i = 0 ; i < grille.getLargeur(); i++)
@@ -65,8 +65,8 @@ public class GrilleControllerTest
     {
         //Position des mines a ajouter et des chiffres a tester
         //0123456
-        //mxmmxxx  0
-        //1x2xxxx  1
+        //m2mm1xx  0
+        //xxxxxxx  1
         //mmmxmmm  2
         //x3xxx4x  3
         //xxxxmxx  4
@@ -81,8 +81,8 @@ public class GrilleControllerTest
 
         //GIVEN
         GrilleController grilleController = new GrilleController();
-        Grille grille = new Grille(6,11);
-/*
+        Grille grille = new Grille(7,12);
+
         //WHEN
         grille.getGrille()[0][0].setType(Case.TypeCase.mine);
         grille.getGrille()[2][0].setType(Case.TypeCase.mine);
@@ -91,21 +91,49 @@ public class GrilleControllerTest
         grille.getGrille()[1][2].setType(Case.TypeCase.mine);
         grille.getGrille()[2][2].setType(Case.TypeCase.mine);
         grille.getGrille()[4][2].setType(Case.TypeCase.mine);
+        grille.getGrille()[4][4].setType(Case.TypeCase.mine);
         grille.getGrille()[5][2].setType(Case.TypeCase.mine);
-        grille.getGrille()[0][0].setType(Case.TypeCase.mine);
-        grille.getGrille()[0][0].setType(Case.TypeCase.mine);
-        grille.getGrille()[0][0].setType(Case.TypeCase.mine);
-        grille.getGrille()[0][0].setType(Case.TypeCase.mine);
-        grille.getGrille()[0][0].setType(Case.TypeCase.mine);
-        grille.getGrille()[0][0].setType(Case.TypeCase.mine);
-        grille.getGrille()[0][0].setType(Case.TypeCase.mine);
-        grille.getGrille()[0][0].setType(Case.TypeCase.mine);
-        grille.getGrille()[0][0].setType(Case.TypeCase.mine);
-        grille.getGrille()[0][0].setType(Case.TypeCase.mine);
-        grille.getGrille()[0][0].setType(Case.TypeCase.mine);
-*/
+        grille.getGrille()[6][2].setType(Case.TypeCase.mine);
+        grille.getGrille()[0][6].setType(Case.TypeCase.mine);
+        grille.getGrille()[1][6].setType(Case.TypeCase.mine);
+        grille.getGrille()[2][6].setType(Case.TypeCase.mine);
+        grille.getGrille()[4][6].setType(Case.TypeCase.mine);
+        grille.getGrille()[5][6].setType(Case.TypeCase.mine);
+        grille.getGrille()[5][6].setType(Case.TypeCase.mine);
+        grille.getGrille()[6][6].setType(Case.TypeCase.mine);
+        grille.getGrille()[0][7].setType(Case.TypeCase.mine);
+        grille.getGrille()[2][7].setType(Case.TypeCase.mine);
+        grille.getGrille()[4][7].setType(Case.TypeCase.mine);
+        grille.getGrille()[6][7].setType(Case.TypeCase.mine);
+        grille.getGrille()[4][8].setType(Case.TypeCase.mine);
+        grille.getGrille()[0][9].setType(Case.TypeCase.mine);
+        grille.getGrille()[1][9].setType(Case.TypeCase.mine);
+        grille.getGrille()[2][9].setType(Case.TypeCase.mine);
+        grille.getGrille()[4][9].setType(Case.TypeCase.mine);
+        grille.getGrille()[5][9].setType(Case.TypeCase.mine);
+        grille.getGrille()[6][9].setType(Case.TypeCase.mine);
+        grille.getGrille()[0][10].setType(Case.TypeCase.mine);
+        grille.getGrille()[2][10].setType(Case.TypeCase.mine);
+        grille.getGrille()[4][10].setType(Case.TypeCase.mine);
+        grille.getGrille()[6][10].setType(Case.TypeCase.mine);
+        grille.getGrille()[0][11].setType(Case.TypeCase.mine);
+        grille.getGrille()[1][11].setType(Case.TypeCase.mine);
+        grille.getGrille()[4][11].setType(Case.TypeCase.mine);
+        grille.getGrille()[5][11].setType(Case.TypeCase.mine);
+        grille.getGrille()[6][11].setType(Case.TypeCase.mine);
 
-        //
+        grilleController.AjouterChiffresGrille(grille);
+
+        //THEN
+        Assertions.assertEquals(Case.TypeCase.un ,grille.getGrille()[4][0].getType());
+        Assertions.assertEquals(Case.TypeCase.deux ,grille.getGrille()[1][0].getType());
+        Assertions.assertEquals(Case.TypeCase.trois ,grille.getGrille()[1][3].getType());
+        Assertions.assertEquals(Case.TypeCase.quatre ,grille.getGrille()[5][3].getType());
+        Assertions.assertEquals(Case.TypeCase.cinq ,grille.getGrille()[1][7].getType());
+        Assertions.assertEquals(Case.TypeCase.six ,grille.getGrille()[5][7].getType());
+        Assertions.assertEquals(Case.TypeCase.sept ,grille.getGrille()[1][10].getType());
+        Assertions.assertEquals(Case.TypeCase.huit ,grille.getGrille()[5][10].getType());
+
 
     }
 }
