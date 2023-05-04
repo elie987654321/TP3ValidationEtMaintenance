@@ -9,7 +9,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -17,7 +16,6 @@ import model.Case;
 import model.Grille;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class JeuDebutantGraphicalController {
 
@@ -26,8 +24,6 @@ public class JeuDebutantGraphicalController {
     private GrilleController grilleController = new GrilleController();
     @FXML
     private GridPane tableauDeJeu;
-    @FXML
-    private BorderPane contour;
 
     // Images des cases
     private ImageView imageViewCase;
@@ -66,6 +62,7 @@ public class JeuDebutantGraphicalController {
     private Label labelMine = new Label("000");
     private int nbrDeMines = 10;
 
+
     public void handleJeuDebutant() throws Exception {
         Stage stage = (Stage) debutantMenuItem.getParentPopup().getOwnerWindow();
         JeuDebutantController jeuDebutantController = new JeuDebutantController();
@@ -103,12 +100,10 @@ public class JeuDebutantGraphicalController {
     }
 
     private void handleClick(javafx.scene.input.MouseButton bouton, Case caseSelectionne) {
-        System.out.println(caseSelectionne.getType());
-        // Validation d'un clique sur mine
-        if (caseSelectionne.getType() ==  Case.TypeCase.mine){
-            finirLaPartie();
-        }
-        else{
+        System.out.println(caseSelectionne.getEtat() + " " + caseSelectionne.getType());
+
+        if (!partieGagne(caseSelectionne)){
+            // Validation d'un clique sur mine
             if (caseSelectionne.getEtat() != Case.EtatCase.revele){
 
                 // Commencer le compteur au premier clique d'une case
@@ -119,13 +114,20 @@ public class JeuDebutantGraphicalController {
                 // Validation d'un clique gauche sur une case
                 if (caseSelectionne.getEtat() !=  Case.EtatCase.drapeau) {
                     if (bouton == javafx.scene.input.MouseButton.PRIMARY) {
-                        revelerLaCase(caseSelectionne);
+                        // Validation d'un clic sur une mine
+                        if (caseSelectionne.getType() ==  Case.TypeCase.mine){
+                            finirLaPartie(caseSelectionne);
+                        }else {
+                            revelerLaCase(caseSelectionne);
+                        }
+
                     }
                 }
 
                 // Validation d'un clique droit sur une case
                 if (bouton == javafx.scene.input.MouseButton.SECONDARY) {
                     if (caseSelectionne.getEtat() ==  Case.EtatCase.normal){
+
                         mettreUnDrapeau(caseSelectionne);
                     }else if(caseSelectionne.getEtat() ==  Case.EtatCase.drapeau){
                         mettreUnInterrogation(caseSelectionne);
@@ -162,6 +164,11 @@ public class JeuDebutantGraphicalController {
         mettreAJourNbrDeMines(true);
     }
 
+    private void mettreUnDrapeauErrone(Case caseSelectionne){
+        imageViewCase = new ImageView(imageCaseMineMalIdentifie);
+        caseSelectionne.setGraphic(imageViewCase);
+    }
+
     private void mettreUnInterrogation(Case caseSelectionne){
         caseSelectionne.setEtat(Case.EtatCase.interrogation);
         imageViewCase = new ImageView(imageCaseInterrogation);
@@ -183,64 +190,84 @@ public class JeuDebutantGraphicalController {
         imageCase = new Image("images/" + type);
         imageViewCase = new ImageView(imageCase);
         caseSelectionne.setGraphic(imageViewCase);
+        caseSelectionne.setDisable(true);
     }
 
-    public void revelerLesCasesVoisinnes(Case caseSelectionne) {
-        if (getCasesVoisinnesMines(caseSelectionne) == 0) {
-            for (Case caseVoisinne : getCasesVoisinnes(caseSelectionne)) {
-                revelerLesCasesVoisinnes(caseVoisinne);
-            }
-        }
-
+    private void revelerLaMine(Case caseSelectionne){
+        imageViewCase = new ImageView(imageCaseMine);
+        caseSelectionne.setGraphic(imageViewCase);
     }
 
-    private List<Case> getCasesVoisinnes(Case caseSelectionne) {
-        List<Case> casesVoisinnes = new ArrayList<>();
+    private void revelerLaMineExplose(Case caseSelectionne){
+        imageViewCase = new ImageView(imageCaseMineExplose);
+        caseSelectionne.setGraphic(imageViewCase);
+    }
 
-        for (int ligne = -1; ligne <= 1; ligne++) {
-            for (int colonne = -1; colonne <= 1; colonne++) {
-                if (ligne != 0 || colonne != 0) {
-                    int x = caseSelectionne.getLigne() + ligne;
-                    int y = caseSelectionne.getColonne() + colonne;
-                    if (caseValide(x, y)) {
-                        casesVoisinnes.add(grille.getGrille()[x][y]);
-                    }
+    private void changerBonhommeMort(){
+        imageViewCase = new ImageView(imageBonhommeMort);
+        bonhomme.setGraphic(imageViewCase);
+    }
+
+    private void changerBonhommeGagne(){
+        imageViewCase = new ImageView(imageBonhommeGagne);
+        bonhomme.setGraphic(imageViewCase);
+    }
+
+    private void finirLaPartie(Case caseSelectionne){
+        for (int ligne = 0; ligne < grille.getLargeur(); ligne++) {
+            for (int colonne = 0; colonne < grille.getHauteur(); colonne++) {
+
+                if (grille.getGrille()[ligne][colonne].getType() == Case.TypeCase.mine && grille.getGrille()[ligne][colonne].getEtat() != Case.EtatCase.drapeau){
+                    revelerLaMine(grille.getGrille()[ligne][colonne]);
+
                 }
+                else if (grille.getGrille()[ligne][colonne].getEtat() == Case.EtatCase.drapeau && grille.getGrille()[ligne][colonne].getType() != Case.TypeCase.mine){
+                    mettreUnDrapeauErrone(grille.getGrille()[ligne][colonne]);
+                }
+                grille.getGrille()[ligne][colonne].setDisable(true);
             }
         }
-        return casesVoisinnes;
+
+        changerBonhommeMort();
+        revelerLaMineExplose(caseSelectionne);
+        compteur.stop();
     }
 
-    public int getCasesVoisinnesMines(Case caseSelectionne) {
+    private boolean partieGagne(Case caseSelectionne){
         int indice = 0;
 
-        for (int ligne = -1; ligne <= 1; ligne++) {
-            for (int colonne = -1; colonne <= 1; colonne++) {
-                if (ligne != 0 || colonne != 0) {
-                    int x = caseSelectionne.getLigne() + ligne;
-                    int y = caseSelectionne.getColonne() + colonne;
-                    if (caseValide(x, y) && grille.getGrille()[x][y].getType() == Case.TypeCase.mine) {
-                        indice++;
-                    }
+        for (int ligne = 0; ligne < grille.getLargeur(); ligne++) {
+            for (int colonne = 0; colonne < grille.getHauteur(); colonne++) {
+
+                if (grille.getGrille()[ligne][colonne].getType() == Case.TypeCase.mine || grille.getGrille()[ligne][colonne].getEtat() == Case.EtatCase.revele){
+                    indice++;
                 }
             }
         }
-        return indice;
-    }
 
-    private boolean caseValide(int x, int y) {
-        return x >= 0 && x < grille.getLargeur() && y >= 0 && y < grille.getHauteur();
-    }
+        if (indice == grille.getLargeur() * grille.getHauteur() - 1){
+            for (int ligne = 0; ligne < grille.getLargeur(); ligne++) {
+                for (int colonne = 0; colonne < grille.getHauteur(); colonne++) {
+                    if (grille.getGrille()[ligne][colonne].getEtat() != Case.EtatCase.drapeau && grille.getGrille()[ligne][colonne].getType() == Case.TypeCase.mine){
+                        mettreUnDrapeau(grille.getGrille()[ligne][colonne]);
+                    }
 
+                    grille.getGrille()[ligne][colonne].setDisable(true);
 
-    private void finirLaPartie(){
-        /*caseSelectionne.setEtat(Case.EtatCase.normal);
-        imageViewCase = new ImageView(imageCaseDeBase);
-        caseSelectionne.setGraphic(imageViewCase);*/
+                }
+            }
+            revelerLaCase(caseSelectionne);
+            changerBonhommeGagne();
+            compteur.stop();
+
+            return true;
+        }
+
+        return false;
     }
 
     public void initialize() {
-        grilleController.PeuplerGrille(grille, nbrDeMines);
+        grilleController.PeuplerGrille(grille, 1);
 
         for (int ligne = 0; ligne < grille.getLargeur(); ligne++) {
             for (int colonne = 0; colonne < grille.getHauteur(); colonne++) {

@@ -7,6 +7,10 @@
     -fx-opacity: 0.4;
 }
 
+.button:disabled{
+    -fx-opacity: 1;
+}
+
 #contour{
     -fx-border-color: grey;
     -fx-border-width: 4px;
@@ -19,3 +23,5 @@
     -fx-text-fill: red;
     -fx-background-color: black;
 }
+
+
