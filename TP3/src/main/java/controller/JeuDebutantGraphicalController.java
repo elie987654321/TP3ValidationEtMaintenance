@@ -17,8 +17,8 @@ import model.Grille;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class JeuDebutantGraphicalController {
-
+public class JeuDebutantGraphicalController
+{
     // La grille
     private Grille grille = new Grille(8,8);
     private GrilleController grilleController = new GrilleController();
@@ -65,19 +65,22 @@ public class JeuDebutantGraphicalController {
 
     public void handleJeuDebutant() throws Exception {
         Stage stage = (Stage) debutantMenuItem.getParentPopup().getOwnerWindow();
-        JeuDebutantController jeuDebutantController = new JeuDebutantController();
+        JeuControllerFactory factory = new JeuControllerFactory();
+        JeuControllerInterface jeuDebutantController = factory.CreateGraphicalController(1);
         jeuDebutantController.start(stage);
     }
 
     public void handleJeuIntermediaire() throws Exception {
         Stage stage = (Stage) intermediaireMenuItem.getParentPopup().getOwnerWindow();
-        JeuIntermediaireController jeuIntermediaireController = new JeuIntermediaireController();
+        JeuControllerFactory factory = new JeuControllerFactory();
+        JeuControllerInterface jeuIntermediaireController = factory.CreateGraphicalController(2);
         jeuIntermediaireController.start(stage);
     }
 
     public void handleJeuExpert() throws Exception {
         Stage stage = (Stage) expertMenuItem.getParentPopup().getOwnerWindow();
-        JeuExpertController expertController = new JeuExpertController();
+        JeuControllerFactory factory = new JeuControllerFactory();
+        JeuControllerInterface expertController = factory.CreateGraphicalController(3);
         expertController.start(stage);
     }
 
