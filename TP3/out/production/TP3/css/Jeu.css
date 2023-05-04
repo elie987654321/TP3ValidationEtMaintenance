@@ -24,4 +24,12 @@
     -fx-background-color: black;
 }
 
+.labelDroit{
+    -fx-padding: right 100px;
+}
+
+.labelMine{
+    -fx-padding: left 10px;
+}
+
 

@@ -1,45 +1,38 @@
 package controller;
 
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
-import javafx.scene.control.MenuItem;
+import javafx.util.Duration;
+import model.Case;
 import model.Grille;
 
 
 public class JeuIntermediaireGraphicalController
 {
-
     // La grille
     private Grille grille = new Grille(16,16);
     private GrilleController grilleController = new GrilleController();
     @FXML
     private GridPane tableauDeJeu;
-    @FXML
-    private BorderPane contour;
 
     // Images des cases
     private ImageView imageViewCase;
     private Image imageCaseDeBase = new Image("images/caseDeBase.png");
-    private Image imageCase0 = new Image("images/rien.png");
-    private Image imageCase1 = new Image("images/un.png");
-    private Image imageCase2 = new Image("images/deux.png");
-    private Image imageCase3 = new Image("images/trois.png");
-    private Image imageCase4 = new Image("images/quatre.png");
-    private Image imageCase5 = new Image("images/cinq.png");
-    private Image imageCase6 = new Image("images/six.png");
-    private Image imageCase7 = new Image("images/sept.png");
-    private Image imageCase8 = new Image("images/huit.png");
+    private Image imageCase;
     private Image imageCaseDrapeau = new Image("images/caseDrapeau.png");
     private Image imageCaseInterrogation = new Image("images/caseInterrogation.png");
     private Image imageCaseMine = new Image("images/caseMine.png");
     private Image imageCaseMineExplose = new Image("images/caseMineExplose.png");
     private Image imageCaseMineMalIdentifie = new Image("images/caseMineMalIdentifie.png");
-
 
     // Images du bonhomme
     @FXML
@@ -56,6 +49,18 @@ public class JeuIntermediaireGraphicalController
     public MenuItem intermediaireMenuItem;
     @FXML
     public MenuItem expertMenuItem;
+
+    // Le compteur
+    @FXML
+    private Label labelTemps = new Label("000");
+    private Timeline compteur;
+    private int temps = 0;
+
+    // Les mines
+    @FXML
+    private Label labelMine = new Label("000");
+    private int nbrDeMines = 40;
+
 
     public void handleJeuDebutant() throws Exception {
         Stage stage = (Stage) debutantMenuItem.getParentPopup().getOwnerWindow();
@@ -84,8 +89,187 @@ public class JeuIntermediaireGraphicalController
         jeuIntermediaireController.start(stage);
     }
 
+    private void updateTimer() {
+        labelTemps.setText(String.format("%03d", temps));
+
+        temps++;
+    }
+
+    private  void initialiserLeCompteur(){
+        compteur = new Timeline(new KeyFrame(Duration.seconds(1), event -> updateTimer()));
+        compteur.setCycleCount(Animation.INDEFINITE);
+        compteur.play();
+    }
+
+    private void handleClick(javafx.scene.input.MouseButton bouton, Case caseSelectionne) {
+        System.out.println(caseSelectionne.getEtat() + " " + caseSelectionne.getType());
+
+        if (!partieGagne(caseSelectionne)){
+            // Validation d'un clique sur mine
+            if (caseSelectionne.getEtat() != Case.EtatCase.revele){
+
+                // Commencer le compteur au premier clique d'une case
+                if(compteur== null){
+                    initialiserLeCompteur();
+                }
+
+                // Validation d'un clique gauche sur une case
+                if (caseSelectionne.getEtat() !=  Case.EtatCase.drapeau) {
+                    if (bouton == javafx.scene.input.MouseButton.PRIMARY) {
+                        // Validation d'un clic sur une mine
+                        if (caseSelectionne.getType() ==  Case.TypeCase.mine){
+                            finirLaPartie(caseSelectionne);
+                        }else {
+                            revelerLaCase(caseSelectionne);
+                        }
+
+                    }
+                }
+
+                // Validation d'un clique droit sur une case
+                if (bouton == javafx.scene.input.MouseButton.SECONDARY) {
+                    if (caseSelectionne.getEtat() ==  Case.EtatCase.normal){
+
+                        mettreUnDrapeau(caseSelectionne);
+                    }else if(caseSelectionne.getEtat() ==  Case.EtatCase.drapeau){
+                        mettreUnInterrogation(caseSelectionne);
+                    }else {
+                        remettreNormal(caseSelectionne);
+                    }
+                }
+            }
+        }
+    }
+
+    private void mettreAJourNbrDeMines(boolean mine){
+        if (mine){
+            nbrDeMines = nbrDeMines - 1;
+        }else {
+            nbrDeMines = nbrDeMines + 1;
+        }
+
+        if(nbrDeMines > 99){
+            labelMine.setText(""+nbrDeMines);
+        }else if (nbrDeMines < 10){
+            labelMine.setText("00"+nbrDeMines);
+        }
+        else{
+            labelMine.setText("0"+nbrDeMines);
+        }
+    }
+
+    private void mettreUnDrapeau(Case caseSelectionne){
+        caseSelectionne.setEtat(Case.EtatCase.drapeau);
+        imageViewCase = new ImageView(imageCaseDrapeau);
+        caseSelectionne.setGraphic(imageViewCase);
+
+        mettreAJourNbrDeMines(true);
+    }
+
+    private void mettreUnDrapeauErrone(Case caseSelectionne){
+        imageViewCase = new ImageView(imageCaseMineMalIdentifie);
+        caseSelectionne.setGraphic(imageViewCase);
+    }
+
+    private void mettreUnInterrogation(Case caseSelectionne){
+        caseSelectionne.setEtat(Case.EtatCase.interrogation);
+        imageViewCase = new ImageView(imageCaseInterrogation);
+        caseSelectionne.setGraphic(imageViewCase);
+
+        mettreAJourNbrDeMines(false);
+
+    }
+
+    private void remettreNormal(Case caseSelectionne){
+        caseSelectionne.setEtat(Case.EtatCase.normal);
+        imageViewCase = new ImageView(imageCaseDeBase);
+        caseSelectionne.setGraphic(imageViewCase);
+    }
+
+    private void revelerLaCase(Case caseSelectionne){
+        String type = caseSelectionne.getType() + ".png";
+        caseSelectionne.setEtat(Case.EtatCase.revele);
+        imageCase = new Image("images/" + type);
+        imageViewCase = new ImageView(imageCase);
+        caseSelectionne.setGraphic(imageViewCase);
+        caseSelectionne.setDisable(true);
+    }
+
+    private void revelerLaMine(Case caseSelectionne){
+        imageViewCase = new ImageView(imageCaseMine);
+        caseSelectionne.setGraphic(imageViewCase);
+    }
+
+    private void revelerLaMineExplose(Case caseSelectionne){
+        imageViewCase = new ImageView(imageCaseMineExplose);
+        caseSelectionne.setGraphic(imageViewCase);
+    }
+
+    private void changerBonhommeMort(){
+        imageViewCase = new ImageView(imageBonhommeMort);
+        bonhomme.setGraphic(imageViewCase);
+    }
+
+    private void changerBonhommeGagne(){
+        imageViewCase = new ImageView(imageBonhommeGagne);
+        bonhomme.setGraphic(imageViewCase);
+    }
+
+    private void finirLaPartie(Case caseSelectionne){
+        for (int ligne = 0; ligne < grille.getLargeur(); ligne++) {
+            for (int colonne = 0; colonne < grille.getHauteur(); colonne++) {
+
+                if (grille.getGrille()[ligne][colonne].getType() == Case.TypeCase.mine && grille.getGrille()[ligne][colonne].getEtat() != Case.EtatCase.drapeau){
+                    revelerLaMine(grille.getGrille()[ligne][colonne]);
+
+                }
+                else if (grille.getGrille()[ligne][colonne].getEtat() == Case.EtatCase.drapeau && grille.getGrille()[ligne][colonne].getType() != Case.TypeCase.mine){
+                    mettreUnDrapeauErrone(grille.getGrille()[ligne][colonne]);
+                }
+                grille.getGrille()[ligne][colonne].setDisable(true);
+            }
+        }
+
+        changerBonhommeMort();
+        revelerLaMineExplose(caseSelectionne);
+        compteur.stop();
+    }
+
+    private boolean partieGagne(Case caseSelectionne){
+        int indice = 0;
+
+        for (int ligne = 0; ligne < grille.getLargeur(); ligne++) {
+            for (int colonne = 0; colonne < grille.getHauteur(); colonne++) {
+
+                if (grille.getGrille()[ligne][colonne].getType() == Case.TypeCase.mine || grille.getGrille()[ligne][colonne].getEtat() == Case.EtatCase.revele){
+                    indice++;
+                }
+            }
+        }
+
+        if (indice == grille.getLargeur() * grille.getHauteur() - 1){
+            for (int ligne = 0; ligne < grille.getLargeur(); ligne++) {
+                for (int colonne = 0; colonne < grille.getHauteur(); colonne++) {
+                    if (grille.getGrille()[ligne][colonne].getEtat() != Case.EtatCase.drapeau && grille.getGrille()[ligne][colonne].getType() == Case.TypeCase.mine){
+                        mettreUnDrapeau(grille.getGrille()[ligne][colonne]);
+                    }
+
+                    grille.getGrille()[ligne][colonne].setDisable(true);
+
+                }
+            }
+            revelerLaCase(caseSelectionne);
+            changerBonhommeGagne();
+            compteur.stop();
+
+            return true;
+        }
+
+        return false;
+    }
+
     public void initialize() {
-        grilleController.PeuplerGrille(grille, 40);
+        grilleController.PeuplerGrille(grille, nbrDeMines);
 
         for (int ligne = 0; ligne < grille.getLargeur(); ligne++) {
             for (int colonne = 0; colonne < grille.getHauteur(); colonne++) {
@@ -93,10 +277,22 @@ public class JeuIntermediaireGraphicalController
                 // Les cases
                 imageViewCase = new ImageView(imageCaseDeBase);
                 grille.getGrille()[ligne][colonne].setGraphic(imageViewCase);
+                Case cases = grille.getGrille()[ligne][colonne];
+                grille.getGrille()[ligne][colonne].setOnMouseClicked(event -> handleClick(event.getButton(), cases));
 
                 // Le bonhomme
                 imageViewBonhomme = new ImageView(imageBonhommeSourire);
                 bonhomme.setGraphic(imageViewBonhomme);
+
+                // Le label mine
+                if(nbrDeMines > 99){
+                    labelMine.setText(""+nbrDeMines);
+                }else if (nbrDeMines < 10){
+                    labelMine.setText("00"+nbrDeMines);
+                }
+                else{
+                    labelMine.setText("0"+nbrDeMines);
+                }
 
                 tableauDeJeu.add(grille.getGrille()[ligne][colonne], ligne, colonne);
             }

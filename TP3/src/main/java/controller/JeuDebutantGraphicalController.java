@@ -15,8 +15,6 @@ import javafx.util.Duration;
 import model.Case;
 import model.Grille;
 
-import java.util.ArrayList;
-
 public class JeuDebutantGraphicalController
 {
     // La grille
@@ -53,7 +51,7 @@ public class JeuDebutantGraphicalController
 
     // Le compteur
     @FXML
-    private Label timerLabel = new Label("000");
+    private Label labelTemps = new Label("000");
     private Timeline compteur;
     private int temps = 0;
 
@@ -91,7 +89,7 @@ public class JeuDebutantGraphicalController
     }
 
     private void updateTimer() {
-        timerLabel.setText(String.format("%03d", temps));
+        labelTemps.setText(String.format("%03d", temps));
 
         temps++;
     }
@@ -270,7 +268,7 @@ public class JeuDebutantGraphicalController
     }
 
     public void initialize() {
-        grilleController.PeuplerGrille(grille, 1);
+        grilleController.PeuplerGrille(grille, nbrDeMines);
 
         for (int ligne = 0; ligne < grille.getLargeur(); ligne++) {
             for (int colonne = 0; colonne < grille.getHauteur(); colonne++) {
