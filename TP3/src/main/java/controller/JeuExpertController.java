@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 
-public class JeuExpertController extends Application {
+public class JeuExpertController extends Application implements JeuControllerInterface{
 
     @Override
     public void start(Stage primaryStage) throws IOException {
