@@ -158,20 +158,20 @@ public class JeuIntermediaireGraphicalController
     private void mettreUnDrapeau(Case caseSelectionne){
         caseSelectionne.setEtat(Case.EtatCase.drapeau);
         imageViewCase = new ImageView(imageCaseDrapeau);
-        caseSelectionne.setGraphic(imageViewCase);
+        caseSelectionne.getBouton().setGraphic(imageViewCase);
 
         mettreAJourNbrDeMines(true);
     }
 
     private void mettreUnDrapeauErrone(Case caseSelectionne){
         imageViewCase = new ImageView(imageCaseMineMalIdentifie);
-        caseSelectionne.setGraphic(imageViewCase);
+        caseSelectionne.getBouton().setGraphic(imageViewCase);
     }
 
     private void mettreUnInterrogation(Case caseSelectionne){
         caseSelectionne.setEtat(Case.EtatCase.interrogation);
         imageViewCase = new ImageView(imageCaseInterrogation);
-        caseSelectionne.setGraphic(imageViewCase);
+        caseSelectionne.getBouton().setGraphic(imageViewCase);
 
         mettreAJourNbrDeMines(false);
 
@@ -180,7 +180,7 @@ public class JeuIntermediaireGraphicalController
     private void remettreNormal(Case caseSelectionne){
         caseSelectionne.setEtat(Case.EtatCase.normal);
         imageViewCase = new ImageView(imageCaseDeBase);
-        caseSelectionne.setGraphic(imageViewCase);
+        caseSelectionne.getBouton().setGraphic(imageViewCase);
     }
 
     private void revelerLaCase(Case caseSelectionne){
@@ -188,18 +188,18 @@ public class JeuIntermediaireGraphicalController
         caseSelectionne.setEtat(Case.EtatCase.revele);
         imageCase = new Image("images/" + type);
         imageViewCase = new ImageView(imageCase);
-        caseSelectionne.setGraphic(imageViewCase);
-        caseSelectionne.setDisable(true);
+        caseSelectionne.getBouton().setGraphic(imageViewCase);
+        caseSelectionne.getBouton().setDisable(true);
     }
 
     private void revelerLaMine(Case caseSelectionne){
         imageViewCase = new ImageView(imageCaseMine);
-        caseSelectionne.setGraphic(imageViewCase);
+        caseSelectionne.getBouton().setGraphic(imageViewCase);
     }
 
     private void revelerLaMineExplose(Case caseSelectionne){
         imageViewCase = new ImageView(imageCaseMineExplose);
-        caseSelectionne.setGraphic(imageViewCase);
+        caseSelectionne.getBouton().setGraphic(imageViewCase);
     }
 
     private void changerBonhommeMort(){
@@ -250,7 +250,7 @@ public class JeuIntermediaireGraphicalController
                 else if (grille.getGrille()[ligne][colonne].getEtat() == Case.EtatCase.drapeau && grille.getGrille()[ligne][colonne].getType() != Case.TypeCase.mine){
                     mettreUnDrapeauErrone(grille.getGrille()[ligne][colonne]);
                 }
-                grille.getGrille()[ligne][colonne].setDisable(true);
+                grille.getGrille()[ligne][colonne].getBouton().setDisable(true);
             }
         }
 
@@ -277,7 +277,7 @@ public class JeuIntermediaireGraphicalController
                     if (grille.getGrille()[ligne][colonne].getEtat() != Case.EtatCase.drapeau && grille.getGrille()[ligne][colonne].getType() == Case.TypeCase.mine){
                         mettreUnDrapeau(grille.getGrille()[ligne][colonne]);
                     }
-                    grille.getGrille()[ligne][colonne].setDisable(true);
+                    grille.getGrille()[ligne][colonne].getBouton().setDisable(true);
                 }
             }
             changerBonhommeGagne();
@@ -293,9 +293,9 @@ public class JeuIntermediaireGraphicalController
 
                 // Les cases
                 imageViewCase = new ImageView(imageCaseDeBase);
-                grille.getGrille()[ligne][colonne].setGraphic(imageViewCase);
+                grille.getGrille()[ligne][colonne].getBouton().setGraphic(imageViewCase);
                 Case cases = grille.getGrille()[ligne][colonne];
-                grille.getGrille()[ligne][colonne].setOnMouseClicked(event -> handleClick(event.getButton(), cases));
+                grille.getGrille()[ligne][colonne].getBouton().setOnMouseClicked(event -> handleClick(event.getButton(), cases));
 
                 // Le bonhomme
                 imageViewBonhomme = new ImageView(imageBonhommeSourire);
@@ -311,7 +311,7 @@ public class JeuIntermediaireGraphicalController
                     labelMine.setText("0"+nbrDeMines);
                 }
 
-                tableauDeJeu.add(grille.getGrille()[ligne][colonne], ligne, colonne);
+                tableauDeJeu.add(grille.getGrille()[ligne][colonne].getBouton(), ligne, colonne);
             }
         }
     }

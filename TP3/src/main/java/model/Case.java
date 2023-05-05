@@ -2,7 +2,7 @@ package model;
 
 import javafx.scene.control.Button;
 
-public class Case extends Button{
+public class Case {
     public enum TypeCase{
         rien,
         un,
@@ -23,10 +23,19 @@ public class Case extends Button{
         interrogation
     }
 
+    private Button bouton = new Button();
     private TypeCase type;
     private EtatCase etat;
     private int ligne;
     private int colonne;
+
+
+    public Button getBouton() {
+        return bouton;
+    }
+    public void setBouton(Button bouton) {
+        this.bouton = bouton;
+    }
 
     public EtatCase getEtat() {
         return etat;
