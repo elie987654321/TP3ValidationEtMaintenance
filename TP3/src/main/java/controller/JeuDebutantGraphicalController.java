@@ -15,6 +15,9 @@ import javafx.util.Duration;
 import model.Case;
 import model.Grille;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class JeuDebutantGraphicalController
 {
     // La grille
@@ -60,7 +63,6 @@ public class JeuDebutantGraphicalController
     private Label labelMine = new Label("000");
     private int nbrDeMines = 10;
 
-
     public void handleJeuDebutant() throws Exception {
         Stage stage = (Stage) debutantMenuItem.getParentPopup().getOwnerWindow();
         JeuControllerFactory factory = new JeuControllerFactory();
@@ -101,42 +103,37 @@ public class JeuDebutantGraphicalController
     }
 
     private void handleClick(javafx.scene.input.MouseButton bouton, Case caseSelectionne) {
-        System.out.println(caseSelectionne.getEtat() + " " + caseSelectionne.getType());
+        if (caseSelectionne.getEtat() != Case.EtatCase.revele){
 
-        if (!partieGagne(caseSelectionne)){
-            // Validation d'un clique sur mine
-            if (caseSelectionne.getEtat() != Case.EtatCase.revele){
+            // Commencer le compteur au premier clique d'une case
+            if(compteur== null){
+                initialiserLeCompteur();
+            }
 
-                // Commencer le compteur au premier clique d'une case
-                if(compteur== null){
-                    initialiserLeCompteur();
-                }
-
-                // Validation d'un clique gauche sur une case
-                if (caseSelectionne.getEtat() !=  Case.EtatCase.drapeau) {
-                    if (bouton == javafx.scene.input.MouseButton.PRIMARY) {
-                        // Validation d'un clic sur une mine
-                        if (caseSelectionne.getType() ==  Case.TypeCase.mine){
-                            finirLaPartie(caseSelectionne);
-                        }else {
-                            revelerLaCase(caseSelectionne);
-                        }
-
-                    }
-                }
-
-                // Validation d'un clique droit sur une case
-                if (bouton == javafx.scene.input.MouseButton.SECONDARY) {
-                    if (caseSelectionne.getEtat() ==  Case.EtatCase.normal){
-
-                        mettreUnDrapeau(caseSelectionne);
-                    }else if(caseSelectionne.getEtat() ==  Case.EtatCase.drapeau){
-                        mettreUnInterrogation(caseSelectionne);
+            // Validation d'un clique gauche sur une case
+            if (caseSelectionne.getEtat() !=  Case.EtatCase.drapeau) {
+                if (bouton == javafx.scene.input.MouseButton.PRIMARY) {
+                    // Validation d'un clic sur une mine
+                    if (caseSelectionne.getType() ==  Case.TypeCase.mine){
+                        finirLaPartie(caseSelectionne);
                     }else {
-                        remettreNormal(caseSelectionne);
+                        revelerLesCasesVoisinnes(caseSelectionne);
                     }
+
                 }
             }
+
+            // Validation d'un clique droit sur une case
+            if (bouton == javafx.scene.input.MouseButton.SECONDARY) {
+                if (caseSelectionne.getEtat() ==  Case.EtatCase.normal){
+                    mettreUnDrapeau(caseSelectionne);
+                }else if(caseSelectionne.getEtat() ==  Case.EtatCase.drapeau){
+                    mettreUnInterrogation(caseSelectionne);
+                }else {
+                    remettreNormal(caseSelectionne);
+                }
+            }
+            partieGagne();
         }
     }
 
@@ -214,6 +211,33 @@ public class JeuDebutantGraphicalController
         bonhomme.setGraphic(imageViewCase);
     }
 
+    public void revelerLesCasesVoisinnes(Case caseSelectionne){
+        if (caseSelectionne.getEtat() == Case.EtatCase.normal || caseSelectionne.getEtat() == Case.EtatCase.interrogation
+                && caseSelectionne.getType() != Case.TypeCase.mine && caseSelectionne.getEtat() != Case.EtatCase.drapeau){
+            revelerLaCase(caseSelectionne);
+
+            if (caseSelectionne.getType() == Case.TypeCase.rien){
+                List<Case> listeDeCases = new ArrayList<>();
+
+                for (int ligne = caseSelectionne.getLigne() - 1; ligne <= caseSelectionne.getLigne() + 1; ligne++) {
+                    for (int colonne = caseSelectionne.getColonne() - 1; colonne <= caseSelectionne.getColonne() + 1; colonne++) {
+                        if (validerLaCase(ligne, colonne)) {
+                            listeDeCases.add(grille.getGrille()[ligne][colonne]);
+                        }
+                    }
+                }
+
+                for (Case laCase: listeDeCases) {
+                    revelerLesCasesVoisinnes(laCase);
+                }
+            }
+        }
+    }
+
+    public boolean validerLaCase(int ligne, int colonne){
+        return ligne >= 0 && ligne < grille.getLargeur() && colonne >= 0 && colonne < grille.getHauteur();
+    }
+
     private void finirLaPartie(Case caseSelectionne){
         for (int ligne = 0; ligne < grille.getLargeur(); ligne++) {
             for (int colonne = 0; colonne < grille.getHauteur(); colonne++) {
@@ -234,7 +258,7 @@ public class JeuDebutantGraphicalController
         compteur.stop();
     }
 
-    private boolean partieGagne(Case caseSelectionne){
+    private void partieGagne(){
         int indice = 0;
 
         for (int ligne = 0; ligne < grille.getLargeur(); ligne++) {
@@ -246,25 +270,18 @@ public class JeuDebutantGraphicalController
             }
         }
 
-        if (indice == grille.getLargeur() * grille.getHauteur() - 1){
+        if (indice == grille.getLargeur() * grille.getHauteur()){
             for (int ligne = 0; ligne < grille.getLargeur(); ligne++) {
                 for (int colonne = 0; colonne < grille.getHauteur(); colonne++) {
                     if (grille.getGrille()[ligne][colonne].getEtat() != Case.EtatCase.drapeau && grille.getGrille()[ligne][colonne].getType() == Case.TypeCase.mine){
                         mettreUnDrapeau(grille.getGrille()[ligne][colonne]);
                     }
-
                     grille.getGrille()[ligne][colonne].setDisable(true);
-
                 }
             }
-            revelerLaCase(caseSelectionne);
             changerBonhommeGagne();
             compteur.stop();
-
-            return true;
         }
-
-        return false;
     }
 
     public void initialize() {

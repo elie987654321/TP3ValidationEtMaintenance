@@ -22,7 +22,8 @@ public class GrilleController {
             {
                 grille.getGrille()[i][j].setEtat(Case.EtatCase.normal);
                 grille.getGrille()[i][j].setType(Case.TypeCase.rien);
-
+                grille.getGrille()[i][j].setLigne(i);
+                grille.getGrille()[i][j].setColonne(j);
             }
         }
     }
