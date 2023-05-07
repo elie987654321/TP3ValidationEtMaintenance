@@ -156,9 +156,9 @@ public class JeuIntermediaireGraphicalController
     }
 
     private void mettreUnDrapeau(int colonne, int rangee){
-        .setEtat(Case.EtatCase.drapeau);
+        grille.getGrille()[colonne][rangee].setEtat(Case.EtatCase.drapeau);
         imageViewCase = new ImageView(imageCaseDrapeau);
-        caseSelectionne.getBouton().setGraphic(imageViewCase);
+        grille.setGraphic(imageViewCase);
 
         mettreAJourNbrDeMines(true);
     }

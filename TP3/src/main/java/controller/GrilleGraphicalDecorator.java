@@ -11,7 +11,7 @@ public class GrilleGraphicalDecorator {
 
     private Grille grille;
 
-    private Button[][] grilleBouton;
+    private BouttonCase[][] grilleBouton;
 
     public GrilleGraphicalDecorator(Grille grille)
     {
@@ -21,7 +21,9 @@ public class GrilleGraphicalDecorator {
         {
             for(int j = 0; j < grille.getHauteur(); j++)
             {
-                grilleBouton[i][j] = new Button();
+                grilleBouton[i][j] = new BouttonCase();
+                grilleBouton[i][j].setLigne(i);
+                grilleBouton[i][j].setRange(j);
             }
         }
     }
