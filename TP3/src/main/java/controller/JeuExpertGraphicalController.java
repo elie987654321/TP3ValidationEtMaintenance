@@ -404,8 +404,8 @@ public class JeuExpertGraphicalController
 
     public void recommencerLaPartie() throws Exception {
         Stage stage = (Stage) bonhomme.getScene().getWindow();
-        JeuDebutantController jeuDebutantController = new JeuDebutantController();
-        jeuDebutantController.start(stage);
+        JeuExpertController jeuExpertController = new JeuExpertController();
+        jeuExpertController.start(stage);
     }
 
     private void updateTimer() {

@@ -9,11 +9,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class GrilleControllerTest
 {
-    @Test
-    public void TestPeuplerGrille()
-    {
-        //Todo copier les autre tests
-    }
 
     @Test
     public void TestAjouterEtatInitialCasesGrilles()
