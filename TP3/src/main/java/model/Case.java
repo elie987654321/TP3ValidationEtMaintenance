@@ -23,19 +23,11 @@ public class Case {
         interrogation
     }
 
-    private Button bouton = new Button();
     private TypeCase type;
     private EtatCase etat;
     private int ligne;
     private int colonne;
 
-
-    public Button getBouton() {
-        return bouton;
-    }
-    public void setBouton(Button bouton) {
-        this.bouton = bouton;
-    }
 
     public EtatCase getEtat() {
         return etat;

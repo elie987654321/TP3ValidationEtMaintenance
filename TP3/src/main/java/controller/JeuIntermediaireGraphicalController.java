@@ -155,8 +155,8 @@ public class JeuIntermediaireGraphicalController
         }
     }
 
-    private void mettreUnDrapeau(Case caseSelectionne){
-        caseSelectionne.setEtat(Case.EtatCase.drapeau);
+    private void mettreUnDrapeau(int colonne, int rangee){
+        .setEtat(Case.EtatCase.drapeau);
         imageViewCase = new ImageView(imageCaseDrapeau);
         caseSelectionne.getBouton().setGraphic(imageViewCase);
 
