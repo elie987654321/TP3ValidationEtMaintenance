@@ -221,7 +221,7 @@ public class JeuDebutantGraphicalController
             revelerLaCase(ligne, colonne);
 
             if (grille.getGrille().getGrille()[ligne][colonne].getType() == Case.TypeCase.rien){
-                List<Case> listeDeCases = new ArrayList<>();
+                List<BouttonCase> listeDeCases = new ArrayList<>();
 
                 int ligne2 = 0;
                 int colonne2 = 0;
@@ -229,13 +229,13 @@ public class JeuDebutantGraphicalController
                 for (ligne2 = ligne - 1; ligne2 <= ligne + 1; ligne2++) {
                     for ( colonne2 = colonne - 1; colonne2 <= colonne + 1; colonne2++) {
                         if (validerLaCase(ligne2, colonne2)) {
-                            listeDeCases.add(grille.getGrille().getGrille()[ligne2][colonne2]);
+                            listeDeCases.add(grille.getGrilleBoutton()[ligne2][colonne2]);
                         }
                     }
                 }
 
-                for (Case laCase: listeDeCases) {
-                    revelerLesCasesVoisinnes(ligne2,colonne2);
+                for (BouttonCase laCase: listeDeCases) {
+                    revelerLesCasesVoisinnes(laCase.getLigne(), laCase.getRange());
                 }
             }
         }
@@ -251,7 +251,7 @@ public class JeuDebutantGraphicalController
 
                 if (grille.getGrille().getGrille()[ligne][colonne].getType() == Case.TypeCase.mine &&
                         grille.getGrille().getGrille()[ligne][colonne].getEtat() != Case.EtatCase.drapeau){
-                    revelerLaMine(colonne, ligne);
+                    revelerLaMine(ligne, colonne);
                 }
                 else if (grille.getGrille().getGrille()[ligne][colonne].getEtat() == Case.EtatCase.drapeau && grille.getGrille().getGrille()[ligne][colonne].getType() != Case.TypeCase.mine){
                     mettreUnDrapeauErrone(ligne, colonne);
