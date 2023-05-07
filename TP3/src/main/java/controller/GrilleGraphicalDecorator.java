@@ -16,6 +16,7 @@ public class GrilleGraphicalDecorator {
     public GrilleGraphicalDecorator(Grille grille)
     {
         this.grille = grille;
+        this.grilleBouton = new BouttonCase[grille.getLargeur()][grille.getHauteur()];
 
         for(int i = 0; i < grille.getLargeur(); i++)
         {
@@ -51,12 +52,12 @@ public class GrilleGraphicalDecorator {
         this.grille = grille;
     }
 
-    public Button[][] getGrilleBoutton()
+    public BouttonCase[][] getGrilleBoutton()
     {
         return this.grilleBouton;
     }
 
-    public void setGrilleBoutton(Button[][] grilleBoutton)
+    public void setGrilleBoutton(BouttonCase[][] grilleBoutton)
     {
         this.grilleBouton = grilleBoutton;
     }

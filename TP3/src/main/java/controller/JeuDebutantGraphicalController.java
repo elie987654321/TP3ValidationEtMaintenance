@@ -226,7 +226,7 @@ public class JeuDebutantGraphicalController
                 int ligne2 = 0;
                 int colonne2 = 0;
 
-                for (ligne2 = ligne - 1; ligne2 <= ligne + 1; ligne++) {
+                for (ligne2 = ligne - 1; ligne2 <= ligne + 1; ligne2++) {
                     for ( colonne2 = colonne - 1; colonne2 <= colonne + 1; colonne2++) {
                         if (validerLaCase(ligne2, colonne2)) {
                             listeDeCases.add(grille.getGrille().getGrille()[ligne2][colonne2]);
@@ -300,7 +300,7 @@ public class JeuDebutantGraphicalController
                 // Les cases
                 imageViewCase = new ImageView(imageCaseDeBase);
                 grille.getGrilleBoutton()[ligne][colonne].setGraphic(imageViewCase);
-                Case cases = grille.getGrille().getGrille()[ligne][colonne];
+                BouttonCase cases = grille.getGrilleBoutton()[ligne][colonne];
                 grille.getGrilleBoutton()[ligne][colonne].setOnMouseClicked(event -> handleClick(event.getButton(), cases));
 
                 // Le bonhomme

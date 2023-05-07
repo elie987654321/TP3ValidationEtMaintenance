@@ -1,4 +1,4 @@
-package controller;
+/*package controller;
 
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -103,8 +103,8 @@ public class JeuIntermediaireGraphicalController
         compteur.play();
     }
 
-    private void handleClick(javafx.scene.input.MouseButton bouton, Case caseSelectionne) {
-        if (caseSelectionne.getEtat() != Case.EtatCase.revele){
+    private void handleClick(javafx.scene.input.MouseButton bouton, BouttonCase caseSelectionne) {
+        if (getEtat() != Case.EtatCase.revele){
 
             // Commencer le compteur au premier clique d'une case
             if(compteur== null){
@@ -316,3 +316,4 @@ public class JeuIntermediaireGraphicalController
         }
     }
 }
+*/

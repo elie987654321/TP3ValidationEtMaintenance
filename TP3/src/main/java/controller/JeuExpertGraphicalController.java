@@ -1,4 +1,4 @@
-package controller;
+/*package controller;
 
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -314,3 +314,4 @@ public class JeuExpertGraphicalController{
         }
     }
 }
+*/
