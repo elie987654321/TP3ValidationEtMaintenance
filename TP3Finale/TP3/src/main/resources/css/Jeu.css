@@ -1,0 +1,35 @@
+.button {
+    -fx-background-color: grey;
+    -fx-font-size: 1px;
+}
+
+.button:pressed {
+    -fx-opacity: 0.4;
+}
+
+.button:disabled{
+    -fx-opacity: 1;
+}
+
+#contour{
+    -fx-border-color: grey;
+    -fx-border-width: 4px;
+    -fx-background-color: grey;
+}
+
+.labelHaut {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: red;
+    -fx-background-color: black;
+}
+
+.labelDroit{
+    -fx-padding: right 100px;
+}
+
+.labelMine{
+    -fx-padding: left 10px;
+}
+
+
