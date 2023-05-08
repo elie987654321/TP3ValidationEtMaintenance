@@ -56,7 +56,7 @@ public class Grille
             {
                 if(grille[i][j].getType() == Case.TypeCase.mine)
                 {
-                    i++;
+                    nbBombes++;
                 }
             }
         }
@@ -68,23 +68,11 @@ public class Grille
         return largeur;
     }
 
-    public void setLargeur(int largeur) {
-        this.largeur = largeur;
-    }
-
     public int getHauteur() {
         return hauteur;
     }
 
-    public void setHauteur(int hauteur) {
-        this.hauteur = hauteur;
-    }
-
     public Case[][] getGrille() {
         return grille;
-    }
-
-    public void setGrille(Case[][] grille) {
-        this.grille = grille;
     }
 }

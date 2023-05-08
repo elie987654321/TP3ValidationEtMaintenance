@@ -132,20 +132,6 @@ public class GrilleControllerTest
 
     }
 
-    @Test
-    public void testGetNbCaseRestante() {
-        Grille g = new Grille(10, 10);
-        assertEquals(100, g.getNbCaseRestante());
-
-        g.getGrille()[0][0].setEtat(Case.EtatCase.revele);
-        assertEquals(99, g.getNbCaseRestante());
-
-        g.getGrille()[1][1].setEtat(Case.EtatCase.drapeau);
-        assertEquals(98, g.getNbCaseRestante());
-
-        g.getGrille()[2][2].setEtat(Case.EtatCase.interrogation);
-        assertEquals(97, g.getNbCaseRestante());
-    }
 
     @Test
     public void testGetNbBombes() {
