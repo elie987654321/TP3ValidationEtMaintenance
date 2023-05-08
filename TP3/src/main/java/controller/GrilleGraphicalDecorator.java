@@ -1,10 +1,6 @@
 package controller;
 
-import javafx.scene.control.Button;
-import model.Case;
 import model.Grille;
-
-import javafx.scene.image.Image;
 
 
 public class GrilleGraphicalDecorator {

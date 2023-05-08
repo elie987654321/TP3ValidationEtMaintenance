@@ -1,8 +1,8 @@
+package controller;
+
 import model.Case;
 import org.junit.jupiter.api.*;
-import org.junit.jupiter.api.Assertions.*;
 
-import controller.GrilleController;
 import model.Grille;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -130,19 +130,6 @@ public class GrilleControllerTest
         assertEquals(Case.TypeCase.huit ,grille.getGrille()[5][10].getType());
 
 
-    }
-
-
-    @Test
-    public void testGetNbBombes() {
-        Grille g = new Grille(10, 10);
-        assertEquals(0, g.getNbBombes());
-
-        g.getGrille()[0][0].setType(Case.TypeCase.mine);
-        assertEquals(1, g.getNbBombes());
-
-        g.getGrille()[1][1].setType(Case.TypeCase.mine);
-        assertEquals(2, g.getNbBombes());
     }
 }
 

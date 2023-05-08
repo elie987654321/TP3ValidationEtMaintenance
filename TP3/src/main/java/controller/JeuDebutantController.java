@@ -17,7 +17,7 @@ public class JeuDebutantController extends Application implements JeuControllerI
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/JeuDebutant.fxml"));
 
-        Scene scene = new Scene(fxmlLoader.load(), 153, 214);
+        Scene scene = new Scene(fxmlLoader.load(), 159, 214);
         primaryStage.setScene(scene);
         primaryStage.setResizable(false);
         primaryStage.show();

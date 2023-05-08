@@ -3,17 +3,14 @@ package model;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class CaseTest {
 
     //Il n'est pas pertinent de faire des test separer pour les get et les set car ils ne
     // peuvent pas etre tester l'un sans l'autre
     @Test
-    public void getSetEtat() {
+    public void TestGetSetEtat() {
         //GIVEN
         Case caseTest = new Case();
-
 
         //WHEN
         caseTest.setEtat(Case.EtatCase.normal);
@@ -23,10 +20,9 @@ class CaseTest {
     }
 
     @Test
-    public void getSetType() {
+    public void TestGetSetType() {
         //GIVEN
         Case caseTest = new Case();
-
 
         //WHEN
         caseTest.setType(Case.TypeCase.un);
@@ -35,6 +31,4 @@ class CaseTest {
         Assertions.assertEquals(Case.TypeCase.un, caseTest.getType());
 
     }
-
-
 }

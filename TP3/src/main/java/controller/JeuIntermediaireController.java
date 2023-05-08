@@ -17,7 +17,7 @@ public class JeuIntermediaireController extends Application implements JeuContro
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/JeuIntermediaire.fxml"));
 
-        Scene scene = new Scene(fxmlLoader.load(), 300, 350);
+        Scene scene = new Scene(fxmlLoader.load(), 311, 350);
         primaryStage.setScene(scene);
         primaryStage.setResizable(false);
         primaryStage.show();

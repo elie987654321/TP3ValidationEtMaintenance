@@ -3,12 +3,11 @@ package model;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
 
 class GrilleTest {
 
     @Test
-    void getNbCaseRestante() {
+    void TestGetNbCaseRestante() {
         //GIVEN
         Grille grille = new Grille(2,2);
 
@@ -23,7 +22,7 @@ class GrilleTest {
     }
 
     @Test
-    void getNbBombes() {
+    void TestGetNbBombes() {
         //GIVEN
         Grille grille = new Grille(2,2);
 
@@ -38,7 +37,7 @@ class GrilleTest {
     }
 
     @Test
-    void getLargeur() {
+    void TestGetLargeur() {
         //GIVEN
         Grille grille = new Grille(2,3);
 
@@ -51,7 +50,7 @@ class GrilleTest {
 
 
     @Test
-    void getHauteur() {
+    void TestGetHauteur() {
         //GIVEN
         Grille grille = new Grille(2,3);
 
@@ -63,11 +62,12 @@ class GrilleTest {
     }
 
     @Test
-    void getGrille() {
+    void TestGetGrille() {
         //GIVEN
         Grille grille = new Grille(3,3);
         Case caseTest;
-                //WHEN
+
+        //WHEN
 
         //THEN
         //Fait echouer le test si l'indice n'existe pas
