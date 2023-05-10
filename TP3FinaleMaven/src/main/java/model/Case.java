@@ -1,6 +1,7 @@
 package model;
 
 public class Case {
+
     public enum TypeCase{
         rien,
         un,

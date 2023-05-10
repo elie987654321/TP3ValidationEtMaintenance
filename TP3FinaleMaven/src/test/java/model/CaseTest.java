@@ -5,8 +5,10 @@ import org.junit.jupiter.api.Test;
 
 class CaseTest {
 
-    //Il n'est pas pertinent de faire des test separer pour les get et les set car ils ne
-    // peuvent pas etre tester l'un sans l'autre
+    /**
+     * Il n'est pas pertinent de faire des test separer pour les get et les set car ils ne
+     * peuvent pas etre tester l'un sans l'autre
+     */
     @Test
     public void TestGetSetEtat() {
         //GIVEN

@@ -96,12 +96,21 @@ public class JeuIntermediaireGraphicalController
         temps++;
     }
 
+    /**
+     * Initialise le compteur de secondes à gauche du bonhomme sourire dans l'interface graphique
+     */
     private  void initialiserLeCompteur(){
         compteur = new Timeline(new KeyFrame(Duration.seconds(1), event -> updateTimer()));
         compteur.setCycleCount(Animation.INDEFINITE);
         compteur.play();
     }
 
+    /**
+     * handle un clic gauche ou droit sur une case du jeu et
+     * gère la fonctionnalité du jeu selon les validations
+     * @param bouton prend un clic gauche ou droit sur une case
+     * @param caseSelectionne prend une case cliqué
+     */
     private void handleClick(javafx.scene.input.MouseButton bouton, BouttonCase caseSelectionne) {
 
         int ligne =  caseSelectionne.getLigne();
